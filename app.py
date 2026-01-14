@@ -1,5 +1,4 @@
 from flask import Flask, request, send_file, render_template
-from rembg import remove
 from PIL import Image
 import io
 import os
@@ -8,7 +7,7 @@ app = Flask(__name__)
 
 # ===== セキュリティ設定 =====
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
-MAX_CONTENT_LENGTH = 5 * 1024 * 1024  # 5MB
+MAX_CONTENT_LENGTH = 5 * 1024 * 1024
 app.config["MAX_CONTENT_LENGTH"] = MAX_CONTENT_LENGTH
 
 
@@ -23,6 +22,9 @@ def index():
 
 @app.route("/remove-bg", methods=["POST"])
 def remove_bg():
+    # ★ ここで初めて rembg を読み込む（超重要）
+    from rembg import remove
+
     if "image" not in request.files:
         return "画像がありません", 400
 
@@ -46,9 +48,3 @@ def remove_bg():
 
     except Exception:
         return "画像処理中にエラーが発生しました", 500
-
-
-# ===== Render 用 起動設定 =====
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
