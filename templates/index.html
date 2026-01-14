@@ -24,11 +24,9 @@
       margin-top: 20px;
     }
 
-    /* ===== 画像プレビューエリア ===== */
     .preview-wrapper {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
       gap: 40px;
       margin: 30px 0;
     }
@@ -37,11 +35,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    .preview p {
-      font-weight: bold;
-      margin-bottom: 10px;
     }
 
     .preview img,
@@ -53,55 +46,26 @@
       object-fit: contain;
     }
 
-    /* ===== 編集後＋調整バー ===== */
     .edit-area {
       display: flex;
-      align-items: flex-start;
       gap: 20px;
+      align-items: flex-start;
     }
 
     .adjustments {
       display: flex;
       flex-direction: column;
-      align-items: center;
       font-size: 12px;
     }
 
-    .adjustments label {
-      margin-top: 10px;
-      margin-bottom: 4px;
-    }
-
-    .adjustments input[type="range"] {
+    .adjustments input {
       width: 120px;
-    }
-
-    /* ===== 操作エリア ===== */
-    .controls {
-      margin-top: 10px;
     }
 
     button {
       margin-top: 20px;
       padding: 8px 16px;
       font-size: 16px;
-    }
-
-    /* ===== スマホ対応 ===== */
-    @media (max-width: 768px) {
-      .preview-wrapper {
-        flex-direction: column;
-      }
-
-      .edit-area {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .adjustments {
-        flex-direction: row;
-        gap: 10px;
-      }
     }
   </style>
 </head>
@@ -112,29 +76,25 @@
   <div class="container">
     <input type="file" id="upload" accept="image/*">
 
-    <div class="controls">
+    <div>
       <label>背景色：</label>
       <input type="color" id="bgColor" value="#ffffff">
 
-      <label>サイズ選択：</label>
+      <label>サイズ：</label>
       <select id="sizeSelect">
-        <option value="resume">履歴書（3×4）</option>
-        <option value="passport">パスポート（35×45）</option>
-        <option value="instagram">Instagram（1:1）</option>
-        <option value="youtube">YouTube（16:9）</option>
+        <option value="resume">履歴書</option>
+        <option value="passport">パスポート</option>
+        <option value="instagram">Instagram</option>
+        <option value="youtube">YouTube</option>
       </select>
     </div>
 
-    <!-- ===== 画像表示エリア ===== -->
     <div class="preview-wrapper">
-
-      <!-- 元画像 -->
       <div class="preview">
         <p>元画像</p>
         <img id="originalImage">
       </div>
 
-      <!-- 編集後 + 調整バー -->
       <div class="edit-area">
         <div class="preview">
           <p>編集後</p>
@@ -151,23 +111,15 @@
           <label>彩度</label>
           <input type="range" id="saturation" min="0" max="2" step="0.01" value="1">
 
-          <label>ｺﾝﾄﾗｽﾄ</label>
+          <label>コントラスト</label>
           <input type="range" id="contrast" min="0.5" max="1.5" step="0.01" value="1">
         </div>
       </div>
-
     </div>
-
-    <p>※ 画像をドラッグして位置を調整できます</p>
 
     <button id="download">ダウンロード</button>
   </div>
 
-  <!-- MediaPipe（将来拡張用） -->
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_detection.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
-
-  <!-- メインJS -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
