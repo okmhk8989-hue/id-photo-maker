@@ -1,3 +1,9 @@
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
+
 from flask import Flask, request, send_file, render_template
 from rembg import remove
 from PIL import Image
@@ -61,3 +67,4 @@ def remove_bg():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
