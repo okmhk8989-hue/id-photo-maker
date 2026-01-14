@@ -1,0 +1,68 @@
+body {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+canvas {
+  border: 1px solid #ccc;
+  width: 300px;   /* 表示サイズ（大きく） */
+  height: 375px;
+}
+.preview-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;              /* 画像間の余白 */
+  margin: 30px 0;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview p {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.preview img,
+.preview canvas {
+  border: 1px solid #ccc;
+  width: 300px;
+  height: 400px;
+  background: #fff;
+  object-fit: contain;
+}
+/* 編集後＋調整バー */
+.edit-area {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* 調整バー全体 */
+.adjustments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}
+
+/* ラベル */
+.adjustments label {
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+/* スライダーを小さく */
+.adjustments input[type="range"] {
+  width: 120px;
+}
