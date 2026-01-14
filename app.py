@@ -11,12 +11,15 @@ ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
 MAX_CONTENT_LENGTH = 5 * 1024 * 1024  # 5MB
 app.config["MAX_CONTENT_LENGTH"] = MAX_CONTENT_LENGTH
 
+
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/remove-bg", methods=["POST"])
 def remove_bg():
@@ -43,6 +46,7 @@ def remove_bg():
 
     except Exception:
         return "画像処理中にエラーが発生しました", 500
+
 
 # ===== Render 用 起動設定 =====
 if __name__ == "__main__":
